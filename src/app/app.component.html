@@ -1,0 +1,48 @@
+<!-- src/app/app.component.html -->
+<div *ngIf="currentQuestion">
+  <h1>Pregunta {{ questionIndex }}</h1>
+  <hr>
+  <hr>
+  <p><strong>Pregunta:</strong> {{ currentQuestion.questionText }}</p>
+  
+  <app-image-loader [src]="currentQuestion.imageUrl || ''"></app-image-loader>
+
+  <form (ngSubmit)="checkAnswer()">
+    <div *ngFor="let option of currentQuestion.options">
+      <label>
+        <input 
+          type="radio" 
+          name="options" 
+          [value]="option" 
+          [(ngModel)]="selectedOption" 
+          required
+        />
+        {{ option }}
+      </label>
+    </div>
+    <button type="submit">Confirmar</button>
+  </form>
+</div>
+
+<!-- Mostrar resultados -->
+<div *ngIf="finalResults">
+  <h2>Resultados</h2>
+  <p>Total de preguntas: {{ finalResults.total }}</p>
+  <p>Respuestas correctas: {{ finalResults.correct }}</p>
+  <p>Respuestas incorrectas: {{ finalResults.incorrect }}</p>
+  <p>Porcentaje: {{ finalResults.percentage | number:'1.0-2' }}%</p>
+  <p>¿Aprobaste? {{ finalResults.passed ? 'Sí' : 'No' }}</p>
+  <div *ngIf="finalResults.wrongQuestions.length > 0">
+    <h3>Preguntas Incorrectas</h3>
+    <ul>
+      <li *ngFor="let item of finalResults.wrongQuestions">
+        <hr>
+        <p><strong>Pregunta:</strong> {{ item.questionText }}</p>
+        <app-image-loader [src]="item.imageUrl || ''"></app-image-loader>
+        <p><strong>Respuesta correcta:</strong> {{ item.correctAnswer }}</p>
+        <hr>
+      </li>
+    </ul>
+  </div>
+  <button (click)="restartQuiz()">Reiniciar Cuestionario</button>
+</div>

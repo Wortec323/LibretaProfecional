@@ -1,0 +1,19 @@
+/* quiz.component.css */
+h2 {
+    font-size: 1.5em;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  
+  li {
+    cursor: pointer;
+    margin: 10px 0;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
