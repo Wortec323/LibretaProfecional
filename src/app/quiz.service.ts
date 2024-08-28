@@ -13,11 +13,16 @@ export class QuizService {
   constructor() {}
 
   getRandomQuestion(): Question | null {
-    if (this.questions.length === 0) {
-      return null;
+    const availableQuestions = this.questions.filter((_, index) => !this.answeredQuestions.has(index));
+
+    if (availableQuestions.length === 0) {
+      return null; // Si no quedan preguntas disponibles
     }
 
-    const question = this.questions[Math.floor(Math.random() * this.questions.length)];
+    const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+    const question = availableQuestions[randomIndex];
+
+    this.answeredQuestions.add(this.questions.indexOf(question)); // Marca la pregunta como respondida
     return this.shuffleOptions(question); // Mezcla las opciones antes de devolver la pregunta
   }
 

@@ -3,12 +3,12 @@
   <h1>Pregunta {{ questionIndex }}</h1>
   <hr>
   <hr>
-  <p><strong>Pregunta:</strong> {{ currentQuestion.questionText }}</p>
+  <h3><strong>{{ currentQuestion.questionText }}</strong></h3>
   
   <app-image-loader [src]="currentQuestion.imageUrl || ''"></app-image-loader>
 
   <form (ngSubmit)="checkAnswer()">
-    <div *ngFor="let option of currentQuestion.options">
+    <div *ngFor="let option of currentQuestion.options"  style="margin: 15px;">
       <label>
         <input 
           type="radio" 
@@ -20,7 +20,22 @@
         {{ option }}
       </label>
     </div>
-    <button type="submit">Confirmar</button>
+    <button type="submit" style="
+    background-color: #ad7e46;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+">
+    Confirmar
+</button>
   </form>
 </div>
 
@@ -44,5 +59,19 @@
       </li>
     </ul>
   </div>
-  <button (click)="restartQuiz()">Reiniciar Cuestionario</button>
+  <button (click)="restartQuiz()" style="
+  background-color: #ad7e46;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;">
+  Reiniciar Cuestionario
+</button>
 </div>

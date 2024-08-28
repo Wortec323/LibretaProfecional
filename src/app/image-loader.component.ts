@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'app-image-loader',
   standalone: true,
   template: `
-    <img [src]="imageUrl" (error)="onError()" alt="Image" />
+    <img [src]="imageUrl" (error)="onError()" alt="Image" style="max-width: 15pc;"/>
   `,
   styles: []
 })
